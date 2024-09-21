@@ -22,7 +22,7 @@ sudo rm -rf /var/www/tmail
 sudo mkdir -p /var/www/tmail
 
 # Tải về và kiểm tra tệp ZIP
-wget http://69.28.88.79/tmail-multi-domain-temporary-email-system.zip -O tmail-v7.8-nulled.zip
+wget http://69.28.88.79/tmail-multi-domain-temporary-email-system7-7.zip -O tmail-v7.8-nulled.zip
 if ! unzip -tq tmail-v7.8-nulled.zip; then
     echo "Tệp ZIP không hợp lệ hoặc bị hỏng. Vui lòng kiểm tra lại liên kết tải về."
     exit 1
