@@ -4,6 +4,9 @@
 # Cập nhật hệ thống
 sudo apt update && sudo apt upgrade -y
 
+# Gỡ bỏ các phiên bản PHP không tương thích
+sudo apt remove -y php8.1 php8.1-mysql php8.1-cli php8.1-common php8.1-opcache php8.1-readline php8.1-curl php8.1-xml php8.1-mbstring php8.1-zip php8.1-bcmath php8.1-intl php8.1-gd php8.1-imap php8.1-soap php8.1-ldap php8.1-redis php8.1-sqlite3 php8.1-pgsql php8.1-memcached php8.1-mongodb php8.1-uuid php8.1-xdebug php8.1-dev php8.1-fpm php8.1-json php8.1-tokenizer php8.1-fileinfo php8.1-iconv
+
 # Cài đặt các yêu cầu hệ thống
 sudo apt install -y php php-mysql php-cli php-common php-opcache php-readline php-curl php-xml php-mbstring php-zip php-bcmath php-intl php-gd php-imap php-soap php-ldap php-redis php-sqlite3 php-pgsql php-memcached php-mongodb php-uuid php-xdebug php-dev php-fpm php-json php-tokenizer php-fileinfo php-iconv composer unzip wget mariadb-server
 
