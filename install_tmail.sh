@@ -17,6 +17,9 @@ sudo sed -i 's/;allow_url_fopen = On/allow_url_fopen = On/' /etc/php/7.4/apache2
 # Xóa các tệp và thư mục hiện có
 sudo rm -rf /var/www/tmail
 
+# Tạo thư mục mới
+sudo mkdir -p /var/www/tmail
+
 # Tải về và kiểm tra tệp ZIP
 wget http://69.28.88.79/tmail-multi-domain-temporary-email-system.zip -O tmail-v7.8-nulled.zip
 if ! unzip -tq tmail-v7.8-nulled.zip; then
