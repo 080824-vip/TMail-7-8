@@ -25,10 +25,10 @@ DB_NAME="tmail_db"
 DB_USER="honglee"
 DB_PASS="k3E\.UW{EA34"
 
-sudo mysql -e "CREATE DATABASE $DB_NAME;"
-sudo mysql -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';"
-sudo mysql -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';"
-sudo mysql -e "FLUSH PRIVILEGES;"
+sudo mariadb -e "CREATE DATABASE $DB_NAME;"
+sudo mariadb -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';"
+sudo mariadb -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';"
+sudo mariadb -e "FLUSH PRIVILEGES;"
 
 # Cấu hình tệp .env
 cp .env.example .env
