@@ -34,7 +34,11 @@ cd /var/www/tmail
 
 # Kiểm tra sự tồn tại của .env.example trước khi sao chép
 if [ ! -f ".env.example" ]; then
-    echo ".env.example not found! Please check the extracted files."
+    echo ".env.example not found! Please create a .env file manually."
+    echo "You can use the following template:"
+    echo "DB_DATABASE=tmail_db"
+    echo "DB_USERNAME=honglee"
+    echo "DB_PASSWORD=k3E\\.UW{EA34"
     exit 1
 fi
 
@@ -54,7 +58,7 @@ sudo mariadb -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';"
 sudo mariadb -e "FLUSH PRIVILEGES;"
 
 # Cấu hình tệp .env
-cp .env.example .env
+cp .env.example .env || { echo ".env.example not found!"; exit 1; }
 sed -i "s/DB_DATABASE=homestead/DB_DATABASE=$DB_NAME/" .env
 sed -i "s/DB_USERNAME=homestead/DB_USERNAME=$DB_USER/" .env
 sed -i "s/DB_PASSWORD=secret/DB_PASSWORD=$DB_PASS/" .env
