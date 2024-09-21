@@ -18,8 +18,8 @@ cd /var/www/tmail
 
 # Cấu hình cơ sở dữ liệu
 DB_NAME="tmail_db"
-DB_USER="tmail_user"
-DB_PASS="your_password"
+DB_USER="honglee"
+DB_PASS="I?Sg{+!\Krnt"
 
 sudo mysql -e "CREATE DATABASE $DB_NAME;"
 sudo mysql -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';"
@@ -45,3 +45,7 @@ chmod -R 775 bootstrap/cache
 
 # Khởi động máy chủ
 php artisan serve --host=0.0.0.0 --port=8000
+
+# Xuất thông tin đăng nhập vào tệp thongtindangnhap.txt
+echo "Tên đăng nhập: $DB_USER" > /var/www/tmail/thongtindangnhap.txt
+echo "Mật khẩu: $DB_PASS" >> /var/www/tmail/thongtindangnhap.txt
