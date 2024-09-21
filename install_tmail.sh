@@ -22,7 +22,7 @@ sudo rm -rf /var/www/tmail
 sudo mkdir -p /var/www/tmail
 
 # Tải về và kiểm tra tệp ZIP
-wget http://69.28.88.79/tmail-multi-domain-temporary-email-system7-7.zip -O tmail-v7.8-nulled.zip
+wget http://69.28.88.79/TMAIL/tmail7-8-1.zip -O tmail-v7.8-nulled.zip
 if ! unzip -tq tmail-v7.8-nulled.zip; then
     echo "Tệp ZIP không hợp lệ hoặc bị hỏng. Vui lòng kiểm tra lại liên kết tải về."
     exit 1
@@ -34,19 +34,12 @@ cd /var/www/tmail
 
 # Kiểm tra sự tồn tại của .env.example trước khi sao chép
 if [ ! -f ".env.example" ]; then
-    echo ".env.example not found! Creating .env file manually."
-
-    # Tạo tệp .env với thông tin cơ sở dữ liệu mặc định
-    cat <<EOL > .env
-DB_DATABASE=tmail_db
-DB_USERNAME=honglee
-DB_PASSWORD=k3E\.UW{EA34
-EOL
-
-    echo ".env file created with default settings."
-else
-    # Nếu .env.example tồn tại, sao chép nó vào .env
-    cp .env.example .env || { echo ".env.example not found!"; exit 1; }
+    echo ".env.example not found! Please create a .env file manually."
+    echo "You can use the following template:"
+    echo "DB_DATABASE=tmail_db"
+    echo "DB_USERNAME=honglee"
+    echo "DB_PASSWORD=k3E\\.UW{EA34"
+    exit 1
 fi
 
 # Cấu hình cơ sở dữ liệu
@@ -64,7 +57,8 @@ sudo mariadb -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';"
 sudo mariadb -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';"
 sudo mariadb -e "FLUSH PRIVILEGES;"
 
-# Cập nhật thông tin trong tệp .env nếu cần thiết (nếu đã tạo)
+# Cấu hình tệp .env
+cp .env.example .env || { echo ".env.example not found!"; exit 1; }
 sed -i "s/DB_DATABASE=homestead/DB_DATABASE=$DB_NAME/" .env
 sed -i "s/DB_USERNAME=homestead/DB_USERNAME=$DB_USER/" .env
 sed -i "s/DB_PASSWORD=secret/DB_PASSWORD=$DB_PASS/" .env
