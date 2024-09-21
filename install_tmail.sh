@@ -50,7 +50,7 @@ sed -i "s/DB_USERNAME=homestead/DB_USERNAME=$DB_USER/" .env
 sed -i "s/DB_PASSWORD=secret/DB_PASSWORD=$DB_PASS/" .env
 
 # Cài đặt các gói PHP cần thiết
-composer install
+composer install --no-interaction
 
 # Chạy các lệnh migrate và seed
 php artisan migrate
