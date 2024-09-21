@@ -14,9 +14,14 @@ sudo apt install -y php7.4 php7.4-mysql php7.4-cli php7.4-common php7.4-opcache 
 sudo sed -i 's/;allow_url_fopen = On/allow_url_fopen = On/' /etc/php/7.4/cli/php.ini
 sudo sed -i 's/;allow_url_fopen = On/allow_url_fopen = On/' /etc/php/7.4/apache2/php.ini
 
-# Tải về và giải nén TMail v7.8 Nulled
+# Tải về và kiểm tra tệp ZIP
 wget https://www.dropbox.com/t/Ell4ahrNasMwgHf2 -O tmail-v7.8-nulled.zip
-sudo apt install -y unzip
+if ! unzip -tq tmail-v7.8-nulled.zip; then
+    echo "Tệp ZIP không hợp lệ hoặc bị hỏng. Vui lòng kiểm tra lại liên kết tải về."
+    exit 1
+fi
+
+# Giải nén tệp ZIP
 unzip tmail-v7.8-nulled.zip -d /var/www/tmail
 cd /var/www/tmail
 
