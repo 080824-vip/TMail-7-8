@@ -5,11 +5,11 @@
 sudo apt update && sudo apt upgrade -y
 
 # Cài đặt các yêu cầu hệ thống
-sudo apt install -y php8.2 php8.2-mysql php8.2-openssl php8.2-pdo php8.2-mbstring php8.2-tokenizer php8.2-xml php8.2-ctype php8.2-json php8.2-bcmath php8.2-imap php8.2-iconv php8.2-zip php8.2-fileinfo composer unzip wget
+sudo apt install -y php8.1 php8.1-mysql php8.1-openssl php8.1-pdo php8.1-mbstring php8.1-tokenizer php8.1-xml php8.1-ctype php8.1-json php8.1-bcmath php8.1-imap php8.1-zip php8.1-fileinfo composer unzip wget
 
 # Cấu hình allow_url_fopen
-sudo sed -i 's/;allow_url_fopen = On/allow_url_fopen = On/' /etc/php/8.2/cli/php.ini
-sudo sed -i 's/;allow_url_fopen = On/allow_url_fopen = On/' /etc/php/8.2/apache2/php.ini
+sudo sed -i 's/;allow_url_fopen = On/allow_url_fopen = On/' /etc/php/8.1/cli/php.ini
+sudo sed -i 's/;allow_url_fopen = On/allow_url_fopen = On/' /etc/php/8.1/apache2/php.ini
 
 # Tải về và giải nén TMail v7.8 Nulled
 wget https://www.dropbox.com/t/Ell4ahrNasMwgHf2 -O tmail-v7.8-nulled.zip
@@ -19,8 +19,9 @@ cd /var/www/tmail
 # Cấu hình cơ sở dữ liệu
 DB_NAME="tmail_db"
 DB_USER="honglee"
-DB_PASS="I?Sg{+!\Krnt"
+DB_PASS="{random_password}"
 
+sudo apt install -y mysql-server
 sudo mysql -e "CREATE DATABASE $DB_NAME;"
 sudo mysql -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';"
 sudo mysql -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';"
