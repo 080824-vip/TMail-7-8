@@ -5,7 +5,7 @@
 sudo apt update && sudo apt upgrade -y
 
 # Cài đặt các yêu cầu hệ thống
-sudo apt install -y php8.1 php8.1-mysql php8.1-openssl php8.1-pdo php8.1-mbstring php8.1-tokenizer php8.1-xml php8.1-ctype php8.1-json php8.1-bcmath php8.1-imap php8.1-zip php8.1-fileinfo composer unzip wget
+sudo apt install -y php8.1 php8.1-mysql php8.1-cli php8.1-common php8.1-opcache php8.1-readline php8.1-curl php8.1-xml php8.1-mbstring php8.1-zip php8.1-bcmath php8.1-intl php8.1-gd php8.1-imap php8.1-soap php8.1-ldap php8.1-redis php8.1-sqlite3 php8.1-pgsql php8.1-memcached php8.1-mongodb php8.1-uuid php8.1-xdebug php8.1-dev php8.1-fpm php8.1-json php8.1-tokenizer php8.1-fileinfo php8.1-iconv composer unzip wget mysql-server
 
 # Cấu hình allow_url_fopen
 sudo sed -i 's/;allow_url_fopen = On/allow_url_fopen = On/' /etc/php/8.1/cli/php.ini
@@ -19,9 +19,8 @@ cd /var/www/tmail
 # Cấu hình cơ sở dữ liệu
 DB_NAME="tmail_db"
 DB_USER="honglee"
-DB_PASS="{random_password}"
+DB_PASS="k3E\.UW{EA34"
 
-sudo apt install -y mysql-server
 sudo mysql -e "CREATE DATABASE $DB_NAME;"
 sudo mysql -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';"
 sudo mysql -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';"
