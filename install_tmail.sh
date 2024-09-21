@@ -3,17 +3,26 @@
 # Cập nhật hệ thống
 sudo apt update && sudo apt upgrade -y
 
-# Gỡ bỏ các phiên bản PHP không tương thích (nếu có)
-sudo apt remove -y php8.1* 
+# Kiểm tra phiên bản PHP hiện tại
+PHP_VERSION=$(php -v | grep -oP 'PHP \K[0-9]+\.[0-9]+')
 
-# Cài đặt PHP 7.4 và các gói cần thiết
-sudo apt install -y software-properties-common
-sudo add-apt-repository ppa:ondrej/php -y
-sudo apt update
-sudo apt install -y php7.4 php7.4-mysql php7.4-cli php7.4-common php7.4-opcache php7.4-readline php7.4-curl php7.4-xml php7.4-mbstring php7.4-zip php7.4-bcmath php7.4-intl php7.4-gd php7.4-imap php7.4-soap php7.4-ldap php7.4-redis php7.4-sqlite3 php7.4-pgsql php7.4-memcached php7.4-mongodb php7.4-uuid php7.4-xdebug php7.4-dev php7.4-fpm php7.4-json composer unzip wget mariadb-server
+if [[ "$PHP_VERSION" != "8.2" ]]; then
+    echo "Phiên bản PHP hiện tại là $PHP_VERSION. Gỡ bỏ phiên bản cũ và cài đặt PHP 8.2..."
+    
+    # Gỡ bỏ các phiên bản PHP không tương thích (nếu có)
+    sudo apt remove -y php* 
+
+    # Cài đặt PHP 8.2 và các gói cần thiết
+    sudo apt install -y software-properties-common
+    sudo add-apt-repository ppa:ondrej/php -y
+    sudo apt update
+    sudo apt install -y php8.2 php8.2-mysql php8.2-cli php8.2-common php8.2-opcache php8.2-readline php8.2-curl php8.2-xml php8.2-mbstring php8.2-zip php8.2-bcmath php8.2-intl php8.2-gd php8.2-imap php8.2-soap php8.2-ldap php8.2-redis php8.2-sqlite3 php8.2-pgsql php8.2-memcached php8.2-mongodb php8.2-uuid php8.2-xdebug php8.2-dev php8.2-fpm php8.2-json composer unzip wget mariadb-server
+else
+    echo "Phiên bản PHP hiện tại là 8.2, không cần thay đổi."
+fi
 
 # Cấu hình allow_url_fopen
-sudo sed -i 's/;allow_url_fopen = On/allow_url_fopen = On/' /etc/php/7.4/cli/php.ini
+sudo sed -i 's/;allow_url_fopen = On/allow_url_fopen = On/' /etc/php/8.2/cli/php.ini
 
 # Xóa các tệp và thư mục hiện có
 sudo rm -rf /var/www/tmail
