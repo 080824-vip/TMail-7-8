@@ -14,6 +14,9 @@ sudo apt install -y php7.4 php7.4-mysql php7.4-cli php7.4-common php7.4-opcache 
 sudo sed -i 's/;allow_url_fopen = On/allow_url_fopen = On/' /etc/php/7.4/cli/php.ini
 sudo sed -i 's/;allow_url_fopen = On/allow_url_fopen = On/' /etc/php/7.4/apache2/php.ini
 
+# Xóa các tệp và thư mục hiện có
+sudo rm -rf /var/www/tmail
+
 # Tải về và kiểm tra tệp ZIP
 wget http://69.28.88.79/tmail-multi-domain-temporary-email-system.zip -O tmail-v7.8-nulled.zip
 if ! unzip -tq tmail-v7.8-nulled.zip; then
@@ -30,6 +33,11 @@ DB_NAME="tmail_db"
 DB_USER="honglee"
 DB_PASS="k3E\.UW{EA34"
 
+# Xóa cơ sở dữ liệu và người dùng hiện có
+sudo mariadb -e "DROP DATABASE IF EXISTS $DB_NAME;"
+sudo mariadb -e "DROP USER IF EXISTS '$DB_USER'@'localhost';"
+
+# Tạo cơ sở dữ liệu và người dùng mới
 sudo mariadb -e "CREATE DATABASE $DB_NAME;"
 sudo mariadb -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';"
 sudo mariadb -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';"
